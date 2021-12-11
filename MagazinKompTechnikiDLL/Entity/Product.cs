@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MagazinKompTechniki.Entity
@@ -7,10 +8,10 @@ namespace MagazinKompTechniki.Entity
     public class Product
     {
         public int ID { get; set; }
-        public string ProductName { get; set; }
-        public string ProductType { get; set; }
-        public double ProductCost { get; set; }
-        public int SerialNumber { get; set; }
+        [Required] [MaxLength(50)] public string ProductName { get; set; }
+        [Required] [MaxLength(50)] public string ProductType { get; set; }
+        [Required] public double ProductCost { get; set; }
+        [Required] [MaxLength(22)] public string SerialNumber { get; set; }
 
     }
 }

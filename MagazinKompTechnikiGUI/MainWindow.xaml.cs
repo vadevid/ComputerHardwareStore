@@ -24,8 +24,7 @@ namespace MagazinKompTechnikiGUI
     {
         public MainWindow()
         {
-            InitializeComponent();
-            using (var db = new ApplicationContext()) db.Client.Add(new Client());
+            InitializeComponent()
         }
     }
 }

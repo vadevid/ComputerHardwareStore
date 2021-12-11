@@ -21,8 +21,25 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="registerButton" Content="Регистрация" Click="registerButton_Click" Grid.ColumnSpan="2" Margin="50,27,0,28"/>
-        <Button x:Name="loginButton" Grid.Column="3" Content="Войти" Click="loginButton_Click" Grid.ColumnSpan="2" Margin="0,27,50,28"/>
-        <Frame Name="LoginView" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" NavigationUIVisibility="Hidden"/>
+        
+        <Grid Background="White" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox Margin="0 0 0 20" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox Margin="0 0 0 70" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button Content="Войти"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
