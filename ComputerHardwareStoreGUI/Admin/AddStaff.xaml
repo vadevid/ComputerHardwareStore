@@ -1,0 +1,55 @@
+﻿<Page x:Class="MagazinKompTechnikiGUI.AddStaff"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MagazinKompTechnikiGUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="540" d:DesignWidth="1200"
+      Title="AddStaff" Background="White">    
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="Login" materialDesign:HintAssist.Hint="Введите логин" Height="30" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="Password" materialDesign:HintAssist.Hint="Введите пароль" Height="30" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="SecondName" materialDesign:HintAssist.Hint="Введите фамилию" Height="30" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="FirstName" materialDesign:HintAssist.Hint="Введите имя" Height="30" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="MiddleName" materialDesign:HintAssist.Hint="Введите отчество" Height="30" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Добавить сотрудника" Click="AddEmploye_Button"/>
+        <DataGrid x:Name="dataGridEmployee"  Grid.Column="5" IsReadOnly="True" Grid.ColumnSpan="6" Grid.RowSpan="10" FontSize="20" BorderThickness="1" FontFamily="Arial" AutoGenerateColumns="False" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"/>
+                <DataGridTextColumn Header="Login" Binding="{Binding Path=Login}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=SecondName}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Path=MiddleName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

@@ -1,0 +1,62 @@
+﻿<Page x:Class="MagazinKompTechnikiGUI.AddProduct"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MagazinKompTechnikiGUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="540" d:DesignWidth="1200"
+      Title="AddProduct" Background="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="ProductType" materialDesign:HintAssist.Hint="Выберите тип товара" LostMouseCapture="UpdateManufacturer"  Height="30" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="ProductManufacturer" materialDesign:HintAssist.Hint="Выберите производителя" LostMouseCapture="UpdateModel"  Height="30" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="ProductModel" materialDesign:HintAssist.Hint="Выберите модель" LostMouseCapture="UpdateShelfs" Height="30" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="ShelfID" materialDesign:HintAssist.Hint="Выберите полку" Height="30" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True"/>
+
+        <TextBox x:Name="ProductCost" materialDesign:HintAssist.Hint="Введите цену товара" Height="30" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="SerialNumber" materialDesign:HintAssist.Hint="Введите серийный номер" Height="30" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="ProductName" materialDesign:HintAssist.Hint="Введите название товара" Height="30" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+        <Button Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Добавить товар" Click="AddProduct_Button"/>
+        <DataGrid x:Name="dataGridProduct" Margin="10 0 0 0"  Grid.Column="3" IsReadOnly="True" Grid.ColumnSpan="8" Grid.RowSpan="10" FontSize="20" BorderThickness="1" FontFamily="Arial" AutoGenerateColumns="False" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"/>
+                <DataGridTextColumn Header="Название товара" Binding="{Binding Path=ProductName}"/>
+                <DataGridTextColumn Header="Тип товара" Binding="{Binding Path=ProductType}"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=ProductCost}"/>
+                <DataGridTextColumn Header="Серийный номер" Binding="{Binding Path=SerialNumber}"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Path=Count}"/>
+                <DataGridTextColumn Header="ID полки" Binding="{Binding Path=ShelfID}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
+
