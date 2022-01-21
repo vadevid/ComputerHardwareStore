@@ -39,8 +39,31 @@
         <ComboBox x:Name="ClientList" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Выберите клиента" Height="30"/>
         <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="Выберите товары" Height="30"/>
         <ListBox x:Name="ProductList" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="5" MouseDoubleClick="SelectProduct"/>
-        <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Content="Выбранные товары" Height="30"/>
+        <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Content="Выбранные товары" Height="30"/>        
         <ListBox x:Name="SelectedProductList" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="5" MouseDoubleClick="UnSelectProduct"/>
-        <Button x:Name="AddOrder" Content="Добавить заказ" Grid.ColumnSpan="3" Grid.Row="8" Grid.Column="1" Click="AddOrder_Button" Cursor="Hand"/>
+        <GroupBox Header="Доставка(Если не нужна, можно не заполнять)" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox x:Name="Street" Height="30" Grid.Row="0" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Введите улицу"/>
+                <TextBox x:Name="House" Grid.Row="0" Height="30" Grid.ColumnSpan="3" Grid.Column="2" materialDesign:HintAssist.Hint="Введите дом/корпус" Margin="10 0 0 0"/>
+                <TextBox x:Name="Flat" Grid.Row="1" Height="30" Grid.ColumnSpan="3" materialDesign:HintAssist.Hint="Введите номер квартиры" PreviewTextInput="CheckNumber"  Cursor="IBeam"/>
+                <DatePicker x:Name="DeliverDate" Grid.Row="2" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Выберите дату"/>
+            </Grid>
+        </GroupBox>
+        <ComboBox x:Name="GuaranteeList" materialDesign:HintAssist.Hint="Выберите гарантию(необязательно)" LostMouseCapture="GuaranteeChange" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="3" Height="30"/>
+        <Label Content="Общая стоимость заказа:" Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="2" Height="30"/>
+        <TextBox x:Name="TotalCost" Grid.Row="8" Grid.Column="7" Height="30" Text="0"/>
+        <Button x:Name="AddOrderButton" Content="Добавить заказ" Grid.ColumnSpan="3" Grid.Row="8" Grid.Column="1" Click="AddOrder_Button" Cursor="Hand"/>
     </Grid>
 </Page>

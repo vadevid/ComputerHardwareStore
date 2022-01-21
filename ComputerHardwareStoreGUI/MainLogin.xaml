@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MagazinKompTechnikiGUI"
         mc:Ignorable="d"
-        Title="MainLogin" MinHeight="400" MinWidth="500" MaxHeight="500" MaxWidth="625">
+        Icon="C:\Users\kail_\source\repos\ComputerHardwareStore\ComputerHardwareStoreGUI\bin\logo.png"
+        Title="Вход" MinHeight="400" MinWidth="500" MaxHeight="500" MaxWidth="625" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

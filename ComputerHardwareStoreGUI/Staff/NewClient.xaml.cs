@@ -20,36 +20,54 @@ namespace MagazinKompTechnikiGUI.Staff
     /// </summary>
     public partial class NewClient : Page
     {
-        public NewClient()
+        private NewOrder _newOrder;
+        public NewClient(Page newOrder)
         {
             InitializeComponent();
+            _newOrder = newOrder as NewOrder;
+            ShowClients();
         }
-        public void ShowClients ()
+        private void ShowClients ()
         {
             dataGridClient.ItemsSource = Client.GetClientInfo();
         }
-
-        public void AddClient_Button(object sender, RoutedEventArgs e)
+        private void AddClient(string secondName, string firstName, string middleName, string street, string house, int flat)
         {
-            string secondName = SecondName.Text;
-            string firstName = FirstName.Text;
-            string middleName = MiddleName.Text;
-            string adress = Adress.Text;
-            AddClient(secondName, firstName, middleName, adress);
-            ShowClients();
-        }
-
-        public void AddClient(string secondName, string firstName, string middleName, string adress)
-        {
-            
             var client = new Client()
             {
                 FirstName = firstName,
                 SecondName = secondName,
                 MiddleName = middleName,
-                Adress = adress
+                Street = street,
+                House = house,
+                Flat = flat,
             };
             Client.Add(client);
         }
+        private void CheckNumber(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }        
+        }
+        private void AddClient_Button(object sender, RoutedEventArgs e)
+        {
+            if (SecondName.Text == "" || FirstName.Text == "" || MiddleName.Text == "" || Street.Text == "" || House.Text == "" || Flat.Text == "")
+            {
+                MessageBox.Show("Не были введены некоторые данные\nпожалуйста проверьте все поля!");
+            } else
+            {
+                string secondName = SecondName.Text;
+                string firstName = FirstName.Text;
+                string middleName = MiddleName.Text;
+                string street = Street.Text;
+                string house = House.Text;
+                int flat = int.Parse(Flat.Text);
+                AddClient(secondName, firstName, middleName, street, house, flat);
+                ShowClients();
+                _newOrder.FillClients();
+            }            
+        }        
     }
 }

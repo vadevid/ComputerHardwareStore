@@ -3,15 +3,17 @@ using System;
 using MagazinKompTechniki;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace MagazinKompTechnikiDLL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220117082945_Migrations-v7")]
+    partial class Migrationsv7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,6 +93,11 @@ namespace MagazinKompTechnikiDLL.Migrations
                     b.Property<int?>("ClientID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("DeliveryAddress")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<double>("DeliveryCost")
                         .HasColumnType("double precision");
 
@@ -100,18 +107,8 @@ namespace MagazinKompTechnikiDLL.Migrations
                     b.Property<int?>("EmployeeID")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Flat")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("House")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                    b.Property<bool>("NeedForDelivery")
+                        .HasColumnType("boolean");
 
                     b.HasKey("ID");
 
@@ -164,9 +161,8 @@ namespace MagazinKompTechnikiDLL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("DurationOfTheGuarantee")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<TimeSpan>("DurationOfTheGuarantee")
+                        .HasColumnType("interval");
 
                     b.Property<double>("GuaranteeCost")
                         .HasColumnType("double precision");
@@ -174,7 +170,12 @@ namespace MagazinKompTechnikiDLL.Migrations
                     b.Property<DateTime>("GuaranteeDate")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int?>("OrderID")
+                        .HasColumnType("integer");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("OrderID");
 
                     b.ToTable("Guarantee");
                 });
@@ -220,9 +221,6 @@ namespace MagazinKompTechnikiDLL.Migrations
                     b.Property<int?>("EmployeeID")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("GuaranteeID")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("timestamp without time zone");
 
@@ -236,8 +234,6 @@ namespace MagazinKompTechnikiDLL.Migrations
                     b.HasIndex("DeliveryID");
 
                     b.HasIndex("EmployeeID");
-
-                    b.HasIndex("GuaranteeID");
 
                     b.ToTable("Order");
                 });
@@ -463,6 +459,15 @@ namespace MagazinKompTechnikiDLL.Migrations
                     b.Navigation("Employee");
                 });
 
+            modelBuilder.Entity("MagazinKompTechniki.Entity.Guarantee", b =>
+                {
+                    b.HasOne("MagazinKompTechniki.Entity.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderID");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("MagazinKompTechniki.Entity.Order", b =>
                 {
                     b.HasOne("MagazinKompTechniki.Entity.Client", "Client")
@@ -477,17 +482,11 @@ namespace MagazinKompTechnikiDLL.Migrations
                         .WithMany()
                         .HasForeignKey("EmployeeID");
 
-                    b.HasOne("MagazinKompTechniki.Entity.Guarantee", "Guarantee")
-                        .WithMany()
-                        .HasForeignKey("GuaranteeID");
-
                     b.Navigation("Client");
 
                     b.Navigation("Delivery");
 
                     b.Navigation("Employee");
-
-                    b.Navigation("Guarantee");
                 });
 
             modelBuilder.Entity("MagazinKompTechniki.Entity.PaymentForSupply", b =>

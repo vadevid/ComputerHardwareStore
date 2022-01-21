@@ -1,5 +1,4 @@
-﻿using MagazinKompTechniki;
-using MagazinKompTechniki.Entity;
+﻿using MagazinKompTechniki.Entity;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
@@ -17,20 +16,9 @@ namespace MagazinKompTechnikiGUI
             InitializeComponent();
             ShowEmployee();
         }
-        public void ShowEmployee()
+        private void ShowEmployee()
         {
             dataGridEmployee.ItemsSource = Employee.GetEmployeeInfo();
-        }
-        public void AddEmploye_Button(object sender, RoutedEventArgs e)
-        {
-            string login = Login.Text;
-            string password = Password.Text;
-            string secondName = SecondName.Text;
-            string firstName = FirstName.Text;
-            string middleName = MiddleName.Text;
-            AddEmployee(login, GetHash(password), secondName, firstName, middleName);
-            ShowEmployee();
-
         }
         private static string GetHash(string input)
         {
@@ -41,10 +29,9 @@ namespace MagazinKompTechnikiGUI
                 sBuilder.Append(data[i].ToString("x2"));
             }
             return sBuilder.ToString();
-        }
-
-        public void AddEmployee(string login, string password, string secondName, string firstName, string middleName)
-        {            
+        }        
+        private void AddEmployee(string login, string password, string secondName, string firstName, string middleName)
+        {
             var employee = new Employee()
             {
                 FirstName = firstName,
@@ -55,5 +42,21 @@ namespace MagazinKompTechnikiGUI
             };
             Employee.Add(employee);
         }
+        private void AddEmploye_Button(object sender, RoutedEventArgs e)
+        {
+            if (Login.Text == "" || Password.Text == "" || SecondName.Text == "" || FirstName.Text == "" || MiddleName.Text == "")
+            {
+                MessageBox.Show("Не были введены некоторые данные,\nпожалуйста проверьте все поля");
+            } else
+            {
+                string login = Login.Text;
+                string password = Password.Text;
+                string secondName = SecondName.Text;
+                string firstName = FirstName.Text;
+                string middleName = MiddleName.Text;
+                AddEmployee(login, GetHash(password), secondName, firstName, middleName);
+                ShowEmployee();
+            }                     
+        }   
     }
 }

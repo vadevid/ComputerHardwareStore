@@ -9,20 +9,17 @@ namespace MagazinKompTechniki.Entity
 {
     public class Shelf
     {
+        private static ApplicationContext db = Context.Db;
         public int ID { get; set; }
         [Required] [MaxLength(50)] public string ProductModel { get; set; }
         [Required] public int Capacity { get; set; }
-        [Required] public Rack Rack { get; set; }
-        [Required] public List<Product> Products { get; set; }
-
+        [Required] public virtual Rack Rack { get; set; }
+        [Required] public virtual List<Product> Products { get; set; }
         public Shelf ()
         {
             Products = new List<Product> ();
         }
-
-        private static ApplicationContext db = Context.Db;
-
-        public static int GetShelfs(string productModel, string productManufacturer)
+        public static int GetShelf(string productModel, string productManufacturer)
         {
             return (from sh in db.Shelf
                     join r in db.Rack on sh.Rack.ID equals r.ID
@@ -31,7 +28,6 @@ namespace MagazinKompTechniki.Entity
                     select sh.ID
                     ).FirstOrDefault();
         }
-
         public static List<string> GetModels(string productManufacturer, string productType)
         {
             return (from sh in db.Shelf
@@ -41,7 +37,6 @@ namespace MagazinKompTechniki.Entity
                     select sh.ProductModel
                     ).ToList();
         }
-
         public static Shelf GetShelfByID(int id)
         {
             return db.Shelf.Where(r => r.ID == id).FirstOrDefault();

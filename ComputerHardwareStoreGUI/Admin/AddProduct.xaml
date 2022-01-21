@@ -41,14 +41,13 @@
         <ComboBox x:Name="ProductModel" materialDesign:HintAssist.Hint="Выберите модель" LostMouseCapture="UpdateShelfs" Height="30" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
         <TextBox x:Name="ShelfID" materialDesign:HintAssist.Hint="Выберите полку" Height="30" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True"/>
 
-        <TextBox x:Name="ProductCost" materialDesign:HintAssist.Hint="Введите цену товара" Height="30" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="SerialNumber" materialDesign:HintAssist.Hint="Введите серийный номер" Height="30" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="ProductCost" materialDesign:HintAssist.Hint="Введите цену товара" Height="30" Grid.Row="5" Grid.Column="1" PreviewTextInput="CheckNumber" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="SerialNumber" materialDesign:HintAssist.Hint="Введите серийный номер" Height="30" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Cursor="IBeam" />
         <TextBox x:Name="ProductName" materialDesign:HintAssist.Hint="Введите название товара" Height="30" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"/>
 
         <Button Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Добавить товар" Click="AddProduct_Button"/>
         <DataGrid x:Name="dataGridProduct" Margin="10 0 0 0"  Grid.Column="3" IsReadOnly="True" Grid.ColumnSpan="8" Grid.RowSpan="10" FontSize="20" BorderThickness="1" FontFamily="Arial" AutoGenerateColumns="False" ItemsSource="{Binding}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"/>
                 <DataGridTextColumn Header="Название товара" Binding="{Binding Path=ProductName}"/>
                 <DataGridTextColumn Header="Тип товара" Binding="{Binding Path=ProductType}"/>
                 <DataGridTextColumn Header="Цена" Binding="{Binding Path=ProductCost}"/>
@@ -56,6 +55,11 @@
                 <DataGridTextColumn Header="Количество" Binding="{Binding Path=Count}"/>
                 <DataGridTextColumn Header="ID полки" Binding="{Binding Path=ShelfID}"/>
             </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="SelectProduct"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
         </DataGrid>
     </Grid>
 </Page>

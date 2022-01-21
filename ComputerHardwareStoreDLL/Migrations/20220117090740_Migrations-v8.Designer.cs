@@ -3,15 +3,17 @@ using System;
 using MagazinKompTechniki;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace MagazinKompTechnikiDLL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220117090740_Migrations-v8")]
+    partial class Migrationsv8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,6 +110,9 @@ namespace MagazinKompTechnikiDLL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<bool>("NeedForDelivery")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Street")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -164,9 +169,8 @@ namespace MagazinKompTechnikiDLL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("DurationOfTheGuarantee")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<TimeSpan>("DurationOfTheGuarantee")
+                        .HasColumnType("interval");
 
                     b.Property<double>("GuaranteeCost")
                         .HasColumnType("double precision");

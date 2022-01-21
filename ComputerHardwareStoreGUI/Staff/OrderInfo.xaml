@@ -1,0 +1,56 @@
+﻿<Window x:Class="ComputerHardwareStoreGUI.Staff.OrderInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ComputerHardwareStoreGUI.Staff"
+        mc:Ignorable="d"
+        Title="Информация о заказе" Icon="C:\Users\kail_\source\repos\ComputerHardwareStore\ComputerHardwareStoreGUI\bin\logo.png" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Заказанные продукты" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="9">
+            <ListBox x:Name="OrderedProducts"></ListBox>
+        </GroupBox>
+        <TextBox x:Name="ClientName" IsReadOnly="True" Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="1" Height="30"/>
+        <TextBox x:Name="EmployeeName" IsReadOnly="True"  Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="2" Height="30"/>
+        <TextBox x:Name="GuaranteeDuration" IsReadOnly="True"  Grid.Column="5" Grid.ColumnSpan="1" Grid.Row="3" Height="30" Visibility="Hidden"/>
+        <TextBox x:Name="DeliveryAdress" IsReadOnly="True" Grid.Column="5" Grid.ColumnSpan="5" Grid.Row="4" Height="30" Visibility="Hidden" Cursor="IBeam"/>
+        <TextBox x:Name="DeliveryDate" IsReadOnly="True" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="5" Height="30" Visibility="Hidden"/>
+        <ComboBox x:Name="OrderStatus" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="6" Height="30">
+            <ComboBoxItem x:Name="Going" Content="Собирается" IsSelected="True"/>
+            <ComboBoxItem x:Name="Prepare" Content="Подготавливается к выдаче"/>
+            <ComboBoxItem x:Name="OnExtradition" Content="На выдаче"/>
+            <ComboBoxItem x:Name="Delivered" Content="Доставляется"/>
+            <ComboBoxItem x:Name="Finish" Content="Завершён"/>
+        </ComboBox>
+        <TextBox x:Name="Finished" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="6" Height="30" Text="Завершён" Visibility="Hidden" IsReadOnly="True"/>
+        <Button x:Name="ChangeOrder" Content="Изменить заказ и выйти" Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="8" Height="30" Click="ChangeOrder_Click"/>
+        <Button x:Name="CloseButton" Content="Выйти" Grid.Column="9" Grid.ColumnSpan="1" Grid.Row="8" Height="30" Click="CloseButton_Click" Margin="-10 0 0 0" Cursor="Hand"/>
+    </Grid>
+</Window>

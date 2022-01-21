@@ -9,16 +9,16 @@ namespace MagazinKompTechniki.Entity
 {
     public class Rack
     {
+        private static ApplicationContext db = Context.Db;
         public int ID { get; set; }
         [Required] [MaxLength(50)] public string Manufacturer { get; set; }
         [Required] public int Capacity { get; set; }
-        [Required] public List<Shelf> Shelfs { get; set; }
-        [Required] public Compartment Compartment { get; set; }
+        [Required] public virtual List<Shelf> Shelfs { get; set; }
+        [Required] public virtual Compartment Compartment { get; set; }
         public Rack ()
         {
             Shelfs = new List<Shelf> ();
         }
-        private static ApplicationContext db = Context.Db;
         public static List<string> GetManufacturers(string productType)
         {
             return (from r in db.Rack
@@ -27,6 +27,5 @@ namespace MagazinKompTechniki.Entity
                     select r.Manufacturer
                     ).ToList();
         }
-
     }
 }

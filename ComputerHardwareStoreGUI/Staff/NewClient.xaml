@@ -36,10 +36,12 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="SecondName" materialDesign:HintAssist.Hint="Введите фамилию" Height="30" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"/>
-        <TextBox x:Name="FirstName" materialDesign:HintAssist.Hint="Введите имя" Height="30" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3"/>
-        <TextBox x:Name="MiddleName" materialDesign:HintAssist.Hint="Введите отчество" Height="30" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3"/>
-        <TextBox x:Name="Adress" materialDesign:HintAssist.Hint="Введите адресс" Height="30" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="SecondName" materialDesign:HintAssist.Hint="Введите фамилию" Height="30" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="FirstName" materialDesign:HintAssist.Hint="Введите имя" Height="30" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="MiddleName" materialDesign:HintAssist.Hint="Введите отчество" Height="30" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="Street" materialDesign:HintAssist.Hint="Введите улицу" Height="30" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="House" materialDesign:HintAssist.Hint="Введите номер дома/корпус" Height="30" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Cursor="IBeam"/>
+        <TextBox x:Name="Flat" materialDesign:HintAssist.Hint="Введите номер квартиры" Height="30" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" PreviewTextInput="CheckNumber" Cursor="IBeam" />
         <Button Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Content="Добавить клиента" Click="AddClient_Button"/>
         <DataGrid x:Name="dataGridClient"  Grid.Column="5" IsReadOnly="True" Grid.ColumnSpan="6" Grid.RowSpan="10" FontSize="20" BorderThickness="1" FontFamily="Arial" AutoGenerateColumns="False" ItemsSource="{Binding}">
             <DataGrid.Columns>

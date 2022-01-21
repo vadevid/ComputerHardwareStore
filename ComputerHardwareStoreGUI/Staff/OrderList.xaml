@@ -36,14 +36,32 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="dataGridProduct"  Grid.Column="0" IsReadOnly="True" Grid.ColumnSpan="11" Grid.Row="1" Grid.RowSpan="11" FontSize="20" BorderThickness="1" FontFamily="Arial" AutoGenerateColumns="False" ItemsSource="{Binding}">
+        <ComboBox x:Name="SortStatus" LostMouseCapture="StatusSort" materialDesign:HintAssist.Hint="Выберите статус" Height="30" Grid.ColumnSpan="2" Grid.Column="0" Margin="10 0">
+            <ComboBoxItem Content="Собирается"/>
+            <ComboBoxItem Content="Подготовливается к выдаче"/>
+            <ComboBoxItem Content="На выдаче"/>
+            <ComboBoxItem Content="Доставляется"/>
+            <ComboBoxItem Content="Завершён"/>
+        </ComboBox>
+        <DatePicker x:Name="SortMinDate" SelectedDateChanged="MinDateSort" Grid.Column="2" materialDesign:HintAssist.Hint="Минимальная дата" Grid.ColumnSpan="2" Height="30" Margin="10 0"/>
+        <DatePicker x:Name="SortMaxDate" SelectedDateChanged="MaxDateSort" Grid.Column="4" materialDesign:HintAssist.Hint="Максимальная дата" Grid.ColumnSpan="2" Height="30"/>
+        <ComboBox x:Name="SortClient" LostMouseCapture="ClientSort" Height="30" Grid.Column="6" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Выберите клиента" Margin="10 0"/>
+        <CheckBox x:Name="SortStaff" Grid.Column="8" Margin="10 0 0 0" Checked="StaffSort" Unchecked="StaffSort"/>
+        <TextBox Text="Свои заказы" Height="30" Grid.Column="8" Margin="30 0 -30 0" IsReadOnly="True"/>
+        <Button Content="Очистить" Grid.Column="11" Margin="-35 0 0 0" FontSize="12" Click="ClearSearch" Cursor="Hand"/>
+        <DataGrid x:Name="dataGridOrder"  Grid.Column="0" IsReadOnly="True" Grid.ColumnSpan="11" Grid.Row="1" Grid.RowSpan="11" FontSize="20" BorderThickness="1" FontFamily="Arial" AutoGenerateColumns="False" ItemsSource="{Binding}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"/>
                 <DataGridTextColumn Header="ФИО клиента" Binding="{Binding Path=FIOClienta}"/>
                 <DataGridTextColumn Header="ФИО сотрудника" Binding="{Binding Path=FIOEmployee}"/>
-                <DataGridTextColumn Header="Дата заказа" Binding="{Binding Path=OrderDate}"/>
+                <DataGridTextColumn x:Name="DataSort" Header="Дата заказа" Binding="{Binding Path=OrderDate}" SortDirection="Ascending"/>
                 <DataGridTextColumn Header="Статус заказа" Binding="{Binding Path=Status}"/>
             </DataGrid.Columns>
+
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="SelectOrder"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
         </DataGrid>
     </Grid>
 </Page>

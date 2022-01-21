@@ -9,9 +9,8 @@ namespace MagazinKompTechniki.Entity
     {
         public int ID { get; set; }
         [Required] public DateTime SupplyDate { get; set; }
-        [Required] public Manufacturer Manufacturer { get; set; }
-        [Required] public List<Product> Products { get; set; }
-
+        [Required] public virtual Manufacturer Manufacturer { get; set; }
+        [Required] public virtual List<Product> Products { get; set; }
         public Supply ()
         {
             Products = new List<Product> ();

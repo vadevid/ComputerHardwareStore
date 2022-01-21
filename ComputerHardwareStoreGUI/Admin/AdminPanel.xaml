@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MagazinKompTechnikiGUI"
         mc:Ignorable="d"
-        Title="AdminPanel" Height="600" Width="1200"
+        Icon="C:\Users\kail_\source\repos\ComputerHardwareStore\ComputerHardwareStoreGUI\bin\logo.png"
+        Title="Панель администратора" ResizeMode="NoResize" Height="600" Width="1200"
         >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -34,8 +35,9 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Добавить сотрудника" Grid.Column="2" Grid.ColumnSpan="2" Click="AddStaff_Button"/>
-        <Button Content="Добавить Товар" Grid.Column="5" Grid.ColumnSpan="2" Click="AddProduct_Button" Cursor="Hand"/>
+        <Button x:Name="AddStaffBtn"  Content="Добавить сотрудника" Grid.Column="2" Grid.ColumnSpan="2" Click="AddStaff_Button" Cursor="Hand"/>
+        <Button x:Name="AddProductBtn" Content="Добавить Товар" Grid.Column="5" Grid.ColumnSpan="2" Click="AddProduct_Button" Cursor="Hand"/>
+        <Button Content="Сменить пользователя" Grid.Column="8" Grid.ColumnSpan="2" Click="ChangeUser" Cursor="Hand"/>
         <Frame x:Name="View" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="11" Grid.RowSpan="9" />
     </Grid>
 </Window>

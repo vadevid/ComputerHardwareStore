@@ -5,8 +5,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MagazinKompTechnikiGUI"
-        mc:Ignorable="d"
-        Title="StaffPanel" Height="600" Width="1200"
+        mc:Ignorable="d" ResizeMode="NoResize"
+        Icon="C:\Users\kail_\source\repos\ComputerHardwareStore\ComputerHardwareStoreGUI\bin\logo.png"
+        Title="Панель сотрудника" Height="600" Width="1200"
         >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,6 +19,9 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>            
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -33,9 +37,10 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Новый клиент" Grid.Column="1" Grid.ColumnSpan="2" Click="AddClient_Button"/>
-        <Button Content="Новый заказ" Grid.Column="4" Grid.ColumnSpan="2" Click="AddOrder_Button"/>
-        <Button Content="Список заказов" Grid.Column="7" Grid.ColumnSpan="2" Click="OrderList_Button"/>
-        <Frame x:Name="View" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="11" Grid.RowSpan="9" />
+        <Button x:Name="NewClientBtn" Content="Новый клиент" Grid.Column="2" Grid.ColumnSpan="2" Click="AddClient_Button" />
+        <Button x:Name="NewOrderBtn" Content="Новый заказ" Grid.Column="5" Grid.ColumnSpan="2" Click="AddOrder_Button" />
+        <Button x:Name="OrderListBtn" Content="Список заказов" Grid.Column="8" Grid.ColumnSpan="2" Click="OrderList_Button"/>
+        <Button Content="Сменить пользователя" Grid.Column="10" Grid.ColumnSpan="2" Margin="40 0 -40 0" Click="ChangeUser" Cursor="Hand"/>
+        <Frame x:Name="View" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="13" Grid.RowSpan="9" />
     </Grid>
 </Window>

@@ -1,10 +1,10 @@
-﻿using MagazinKompTechniki;
+﻿using ComputerHardwareStoreGUI.Admin;
 using MagazinKompTechniki.Entity;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MagazinKompTechnikiGUI
 {
@@ -18,9 +18,12 @@ namespace MagazinKompTechnikiGUI
             InitializeComponent();
             ShowProduct();
             ShowProductTypes();
-        }       
-
-        public void ShowProductTypes()
+        }
+        public void ShowProduct()
+        {
+            dataGridProduct.ItemsSource = Product.GetProductInfo();
+        }
+        private void ShowProductTypes()
         {
             List<string> productTypes = Compartment.GetProductTypes();
             for (int i = 0; i < productTypes.Count; i++)
@@ -28,7 +31,7 @@ namespace MagazinKompTechnikiGUI
                 ProductType.Items.Add(productTypes[i]);
             }
         }
-        public void UpdateManufacturer(object sender, System.Windows.Input.MouseEventArgs e)
+        private void UpdateManufacturer(object sender, System.Windows.Input.MouseEventArgs e)
         {
             ProductModel.Items.Clear();
             ShelfID.Text = "";
@@ -39,7 +42,7 @@ namespace MagazinKompTechnikiGUI
                 ProductManufacturer.Items.Add(manufacturers[i]);
             }
         }
-        public void UpdateModel(object sender, System.Windows.Input.MouseEventArgs e)
+        private void UpdateModel(object sender, System.Windows.Input.MouseEventArgs e)
         {
             ShelfID.Text = "";
             ProductModel.Items.Clear();
@@ -49,28 +52,35 @@ namespace MagazinKompTechnikiGUI
                 ProductModel.Items.Add(models[i]);
             }
         }
-        public void UpdateShelfs(object sender, System.Windows.Input.MouseEventArgs e)
+        private void UpdateShelfs(object sender, System.Windows.Input.MouseEventArgs e)
         {
             ShelfID.Text = "";
-            int shelf = Shelf.GetShelfs(ProductModel.Text, ProductManufacturer.Text);
+            int shelf = Shelf.GetShelf(ProductModel.Text, ProductManufacturer.Text);
             ShelfID.Text = shelf.ToString();
         }
-        public void ShowProduct()
+        private void AddProduct_Button(object sender, RoutedEventArgs e)
         {
-            dataGridProduct.ItemsSource = Product.GetProductInfo();
-        }
-
-        public void AddProduct_Button(object sender, RoutedEventArgs e)
+            if (ProductName.Text == "" || ProductCost.Text == "" || SerialNumber.Text == "" || ShelfID.Text == "")
+            {
+                MessageBox.Show("Не были введены некоторые данные,\nпожалуйста проверьте все поля!");
+            }
+            else {
+                string productName = ProductName.Text;
+                int productCost = int.Parse(ProductCost.Text);
+                string serialNumber = SerialNumber.Text;
+                int shelfID = int.Parse(ShelfID.Text);
+                AddProd(productName, productCost, serialNumber, shelfID);
+                dataGridProduct.ItemsSource = Product.GetProductInfo();
+            }            
+        }        
+        private void CheckNumber(object sender, TextCompositionEventArgs e)
         {
-            string productName = ProductName.Text;
-            int productCost = int.Parse(ProductCost.Text);
-            string serialNumber = SerialNumber.Text;
-            int shelfID = int.Parse(ShelfID.Text);
-            AddProd(productName, productCost, serialNumber, shelfID);
-            dataGridProduct.ItemsSource = Product.GetProductInfo();
+            if (!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
-
-        public void AddProd(string productName, int productCost, string serialNumber, int shelfID)
+        private void AddProd(string productName, int productCost, string serialNumber, int shelfID)
         {
             var product = new Product()
             {
@@ -79,12 +89,17 @@ namespace MagazinKompTechnikiGUI
                 SerialNumber = serialNumber,
                 Shelf = Shelf.GetShelfByID(shelfID)
             };
-            if (Product.GetProductByName(product.ProductName) != null) Product.UpdateCount(Product.GetProductByName(product.ProductName)); 
-            else 
+            if (Product.GetProductByName(product.ProductName) != null) Product.UpdateCount(Product.GetProductByName(product.ProductName));
+            else
             {
                 Product.Add(product);
             }
         }
-
+        private void SelectProduct(object sender, MouseButtonEventArgs e)
+        {
+            Product.ProductInfo selecredProduct = (Product.ProductInfo)dataGridProduct.SelectedValue;
+            ProductInfo productInfo = new ProductInfo(selecredProduct.ID, this);
+            productInfo.Show();
+        }
     }
 }

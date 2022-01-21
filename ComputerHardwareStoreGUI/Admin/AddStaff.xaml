@@ -44,7 +44,6 @@
         <Button Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Добавить сотрудника" Click="AddEmploye_Button"/>
         <DataGrid x:Name="dataGridEmployee"  Grid.Column="5" IsReadOnly="True" Grid.ColumnSpan="6" Grid.RowSpan="10" FontSize="20" BorderThickness="1" FontFamily="Arial" AutoGenerateColumns="False" ItemsSource="{Binding}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"/>
                 <DataGridTextColumn Header="Login" Binding="{Binding Path=Login}"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=SecondName}"/>
                 <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}"/>

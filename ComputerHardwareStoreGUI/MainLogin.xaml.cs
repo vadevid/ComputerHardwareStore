@@ -3,7 +3,6 @@ using MagazinKompTechniki.Entity;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
-using static MagazinKompTechniki.Entity.Employee;
 
 namespace MagazinKompTechnikiGUI
 {
@@ -17,20 +16,17 @@ namespace MagazinKompTechnikiGUI
             new ApplicationContext(ApplicationContext.GetDB());
             InitializeComponent();
         }
-
-
         private void Login_Click(object sender, RoutedEventArgs e)
         {
+            Employee employee = Employee.SingIn(loginText.Text, GetHash(passText.Password));
 
-            Employee employee = Employee.SingIn(loginText.Text, GetHash(passText.Password));           
-            
             if (employee != null)
             {
                 if (loginText.Text == "admin")
                 {
                     var adminPanel = new AdminPanel();
                     this.Close();
-                    adminPanel.Show();                                      
+                    adminPanel.Show();
                 }
                 else
                 {
@@ -50,5 +46,5 @@ namespace MagazinKompTechnikiGUI
             }
             return sBuilder.ToString();
         }
-    }    
+    }
 }
